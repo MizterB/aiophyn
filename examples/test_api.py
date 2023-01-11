@@ -21,7 +21,7 @@ async def main() -> None:
         try:
             api = await async_get_api(USERNAME, PASSWORD, session=session)
 
-            all_home_info = await api.home.get_info(USERNAME)
+            all_home_info = await api.home.get_homes(USERNAME)
             _LOGGER.info(all_home_info)
 
             home_info = all_home_info[0]

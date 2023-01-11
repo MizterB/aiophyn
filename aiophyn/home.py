@@ -11,7 +11,7 @@ class Home:
         """Initialize."""
         self._request: Callable[..., Awaitable] = request
 
-    async def get_info(
+    async def get_homes(
         self,
         user_id: str,
     ) -> dict:
