@@ -1,4 +1,4 @@
-"""Define a base client for interacting with Flo."""
+"""Define a base client for interacting with Phyn."""
 import logging
 from datetime import datetime, timedelta
 from typing import Optional
@@ -18,14 +18,14 @@ _LOGGER = logging.getLogger(__name__)
 
 DEFAULT_HEADER_CONTENT_TYPE: str = "application/json"
 DEFAULT_HEADER_USER_AGENT: str = "phyn/18 CFNetwork/1331.0.7 Darwin/21.4.0"
-DEFAULT_HEADER_CONNECTION = "keep-alive"
-DEFAULT_HEADER_API_KEY = "E7nfOgW6VI64fYpifiZSr6Me5w1Upe155zbu4lq8"
+DEFAULT_HEADER_CONNECTION: str = "keep-alive"
+DEFAULT_HEADER_API_KEY: str = "E7nfOgW6VI64fYpifiZSr6Me5w1Upe155zbu4lq8"
 DEFAULT_HEADER_ACCEPT: str = "application/json"
-DEFAULT_HEADER_ACCEPT_ENCODING = "gzip, deflate, br"
+DEFAULT_HEADER_ACCEPT_ENCODING: str = "gzip, deflate, br"
 
-COGNITO_REGION = "us-east-1"
-COGNITO_POOL_ID = "us-east-1_UAv6IUsyh"
-COGNITO_CLIENT_ID = "5q2m8ti0urmepg4lup8q0ptldq"
+COGNITO_REGION: str = "us-east-1"
+COGNITO_POOL_ID: str = "us-east-1_UAv6IUsyh"
+COGNITO_CLIENT_ID: str = "5q2m8ti0urmepg4lup8q0ptldq"
 
 DEFAULT_TIMEOUT: int = 10
 
