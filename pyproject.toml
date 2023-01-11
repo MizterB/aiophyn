@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "aiophyn"
+version = "2023.01.0"
+description = "An asynchronous library for Phyn Smart Water devices"
+authors = ["MizterB <5458030+MizterB@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+boto3 = "^1.26.47"
+pycognito = "^2022.12.0"
+aiohttp = "^3.8.3"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
