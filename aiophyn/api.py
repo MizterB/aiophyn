@@ -1,5 +1,7 @@
 """Define a base client for interacting with Phyn."""
+import asyncio
 import logging
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
 from typing import Optional
 from urllib.parse import urlparse
@@ -9,7 +11,6 @@ from aiohttp import ClientSession, ClientTimeout
 from aiohttp.client_exceptions import ClientError
 from pycognito.aws_srp import AWSSRP
 
-from .const import API_BASE
 from .device import Device
 from .errors import RequestError
 from .home import Home
@@ -98,6 +99,18 @@ class API:
 
     async def async_authenticate(self) -> None:
         """Authenticate the user and set the access token with its expiration."""
+        executor = ThreadPoolExecutor()
+        future = executor.submit(self._authenticate)
+        auth_response = await asyncio.wrap_future(future)
+
+        access_token = auth_response["AuthenticationResult"]["AccessToken"]
+        expires_in = auth_response["AuthenticationResult"]["ExpiresIn"]
+
+        self._token = access_token
+        self._token_expiration = datetime.now() + timedelta(seconds=expires_in)
+
+    def _authenticate(self):
+        """boto3 is synchronous, so authenticate in a separate thread."""
         client = boto3.client("cognito-idp", region_name=COGNITO_REGION)
         aws = AWSSRP(
             username=self._username,
@@ -106,13 +119,8 @@ class API:
             client_id=COGNITO_CLIENT_ID,
             client=client,
         )
-        auth_response: dict = aws.authenticate_user()
-
-        access_token = auth_response["AuthenticationResult"]["AccessToken"]
-        expires_in = auth_response["AuthenticationResult"]["ExpiresIn"]
-
-        self._token = access_token
-        self._token_expiration = datetime.now() + timedelta(seconds=expires_in)
+        auth_response = aws.authenticate_user()
+        return auth_response
 
 
 async def async_get_api(
