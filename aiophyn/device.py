@@ -104,7 +104,7 @@ class Device:
             }
         ]
         return await self._request(
-            "post", f"{API_BASE}/preferences/device/{device_id}", data=data
+            "post", f"{API_BASE}/preferences/device/{device_id}", json=data
         )
 
     async def disable_away_mode(self, device_id: str) -> None:
@@ -122,5 +122,5 @@ class Device:
             }
         ]
         return await self._request(
-            "post", f"{API_BASE}/preferences/device/{device_id}", data=data
+            "post", f"{API_BASE}/preferences/device/{device_id}", json=data
         )
