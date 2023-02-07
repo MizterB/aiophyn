@@ -88,3 +88,39 @@ class Device:
             "post",
             f"{API_BASE}/devices/{device_id}/sov/Close",
         )
+
+    async def enable_away_mode(self, device_id: str) -> None:
+        """Enable the device's away mode.
+
+        :param device_id: Unique identifier for the device
+        :type device_id: ``str``
+        :rtype: ``dict``
+        """
+        data = [
+            {
+                "name": "leak_sensitivity_away_mode",
+                "value": "true",
+                "device_id": device_id,
+            }
+        ]
+        return await self._request(
+            "post", f"{API_BASE}/preferences/device/{device_id}", data=data
+        )
+
+    async def disable_away_mode(self, device_id: str) -> None:
+        """Disable the device's away mode.
+
+        :param device_id: Unique identifier for the device
+        :type device_id: ``str``
+        :rtype: ``dict``
+        """
+        data = [
+            {
+                "name": "leak_sensitivity_away_mode",
+                "value": "false",
+                "device_id": device_id,
+            }
+        ]
+        return await self._request(
+            "post", f"{API_BASE}/preferences/device/{device_id}", data=data
+        )
