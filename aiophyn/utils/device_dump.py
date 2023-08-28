@@ -12,6 +12,7 @@ _LOGGER = logging.getLogger()
 
 async def device_dump(username: str, password: str) -> None:
     device_states = []
+    away_mode_states = []
     async with ClientSession() as session:
         try:
             api = await async_get_api(username, password, session=session)
@@ -20,9 +21,15 @@ async def device_dump(username: str, password: str) -> None:
                 for device_id in home.get("device_ids", []):
                     device_state = await api.device.get_state(device_id)
                     device_states.append(device_state)
+
+                    away_mode = await api.device.get_away_mode(device_id)
+                    away_mode_states.append(away_mode)
             print("\n" * 3)
             pprint(device_states)
             print("\n" * 3)
+            pprint(away_mode_states)
+            print("\n" * 3)
+
         except PhynError as err:
             _LOGGER.error("There was an error: %s", err)
 
