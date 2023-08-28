@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aiophyn"
-version = "2023.01.0"
+version = "2023.08.0"
 description = "An asynchronous library for Phyn Smart Water devices"
 authors = ["MizterB <5458030+MizterB@users.noreply.github.com>"]
 license = "MIT"
