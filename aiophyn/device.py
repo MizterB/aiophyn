@@ -88,6 +88,16 @@ class Device:
             "post",
             f"{API_BASE}/devices/{device_id}/sov/Close",
         )
+    
+    async def get_away_mode(self, device_id: str) -> dict:
+        """Return away mode status of a device.
+
+        :param device_id: Unique identifier for the device
+        :type device_id: ``str``
+        :rtype: ``dict``
+        """
+        return await self._request("get", f"{API_BASE}/preferences/device/{device_id}/leak_sensitivity_away_mode")
+
 
     async def enable_away_mode(self, device_id: str) -> None:
         """Enable the device's away mode.

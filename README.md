@@ -11,6 +11,7 @@ This library is initially focused on supporting a Phyn integration for Home Assi
 - Device state
 - Water consumption
 - Shutoff valve control
+- Get and set away mode
 
 ## Acknowledgements
 
