@@ -1,3 +1,7 @@
+# NO LONGER MAINTAINED
+
+*Please check out the excellent [@jordanruthe](https://github.com/jordanruthe) fork of this project, available at https://github.com/jordanruthe/aiophyn, which is actively maintained. Thanks for stopping by!*
+
 # aiophyn
 
 An asynchronous library for Phyn Smart Water devices.
